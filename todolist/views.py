@@ -15,7 +15,13 @@ class ToDoItemCreateView(ToDoItemMixin, generic.CreateView):
     success_url = reverse_lazy('todolist:home')
     template_name_suffix = '_create'
 
-    # TODO: salvar a chave estrangeira do usuário quando criar o ToDoitem
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        self.object.user_id = self.request.user.pk
+        self.object.save()
+
+        return response
 
 
 class ToDoItemUpdateView(ToDoItemMixin, generic.UpdateView):

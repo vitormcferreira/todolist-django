@@ -6,6 +6,10 @@ from todolist.models import ToDoItem
 
 
 class ToDoItemMixin(LoginRequiredMixin):
+    model = ToDoItem
+    fields = ['title', 'text']
+    success_url = reverse_lazy('todolist:home')
+
     def get_queryset(self):
         qs = super().get_queryset()
 
@@ -16,11 +20,6 @@ class ToDoItemMixin(LoginRequiredMixin):
 
 
 class ToDoItemCreateView(ToDoItemMixin, generic.CreateView):
-    model = ToDoItem
-    fields = ['title', 'text']
-    success_url = reverse_lazy('todolist:home')
-    template_name_suffix = '_create'
-
     def form_valid(self, form):
         response = super().form_valid(form)
 
@@ -31,22 +30,16 @@ class ToDoItemCreateView(ToDoItemMixin, generic.CreateView):
 
 
 class ToDoItemUpdateView(ToDoItemMixin, generic.UpdateView):
-    model = ToDoItem
-    fields = ['title', 'text']
-    success_url = reverse_lazy('todolist:home')
-    template_name_suffix = '_update'
+    pass
 
 
 class ToDoItemDeleteView(ToDoItemMixin, generic.DeleteView):
-    model = ToDoItem
-    success_url = reverse_lazy('todolist:home')
+    pass
 
 
 class ToDoItemListView(ToDoItemMixin, generic.ListView):
-    model = ToDoItem
     template_name = 'todolist/home.html'
 
 
 class ToDoItemDetailView(ToDoItemMixin, generic.DetailView):
-    model = ToDoItem
-    template_name_suffix = '_detail'
+    pass

@@ -6,7 +6,13 @@ from todolist.models import ToDoItem
 
 
 class ToDoItemMixin(LoginRequiredMixin):
-    pass
+    def get_queryset(self):
+        qs = super().get_queryset()
+
+        # somente os itens que o usuário criou
+        qs = qs.filter(user=self.request.user)
+
+        return qs
 
 
 class ToDoItemCreateView(ToDoItemMixin, generic.CreateView):

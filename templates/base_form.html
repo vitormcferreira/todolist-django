@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+  <h2 class="titulo">{% block content_title %}{% endblock content_title %}</h2>
+
+  <form method="POST" class="form">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    {% with WIDGET_ERROR_CLASS='form-field-error' %}
+      {% block fields %}{% endblock fields %}
+    {% endwith %}
+
+    <button type="submit" class="button form-button">{% block button_text %}{% endblock button_text %}</button>
+    <p>{% block text_after_button %}{% endblock text_after_button %}</p>
+  </form>
+{% endblock content %}

@@ -18,6 +18,14 @@ class ToDoItemMixin(LoginRequiredMixin):
 
         return qs
 
+    def get_success_url(self):
+        next = self.request.GET.get('next')
+
+        if next:
+            return next
+
+        return super().get_success_url()
+
 
 class ToDoItemCreateView(ToDoItemMixin, generic.CreateView):
     def form_valid(self, form):

@@ -1,19 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base_form.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-</head>
+{% load widget_tweaks %}
 
-<body>
-  <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">enviar</button>
-  </form>
-</body>
+{% block title %} - Registrar{% endblock title %}
 
-</html>
+{% block content_title %}Registrar{% endblock content_title %}
+
+{% block fields %}
+  {% render_field form.username class='form-input' placeholder='*Nome de usuário' %}
+  {{ form.username.errors }}
+  {% render_field form.password1 class='form-input' placeholder='*Senha' %}
+  {{ form.password1.errors }}
+  {% render_field form.password2 class='form-input' placeholder='*Confirmar senha' %}
+  {{ form.password2.errors }}
+{% endblock fields %}
+
+{% block button_text %}Registrar{% endblock button_text %}
+
+{% block text_after_button %}
+  Já possui conta? <a href="{% url 'accounts:login' %}">Faça Login</a>
+{% endblock text_after_button %}

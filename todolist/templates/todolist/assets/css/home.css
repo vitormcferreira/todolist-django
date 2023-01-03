@@ -1,0 +1,20 @@
+.todoitem {
+  font-size: 20px;
+  padding: 10px 30px;
+  margin: 10px 0;
+  border: 1px solid var(--dark-color);
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todoitem h2 a {
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--dark-color);
+}
+
+.todoitem h2 a:hover {
+  text-decoration: underline;
+}

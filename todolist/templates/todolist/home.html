@@ -1,18 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-</head>
+{% load static %}
 
-<body>
+{% block css %}
+  <link rel="stylesheet" href="{% static 'todolist/assets/css/home.css' %}">
+{% endblock css %}
+
+{% block content %}
   {% for todoitem in object_list %}
-    Título: {{ todoitem.title }}
-    <br>
+    <article class="todoitem">
+      <h2>
+        <a href="{% url 'todolist:detail' pk=todoitem.pk %}">{{ todoitem.title }}</a>
+      </h2>
+      <div>
+        <a href="{% url 'todolist:update' pk=todoitem.pk %}" class="button">Editar</a>
+        <a href="{% url 'todolist:delete' pk=todoitem.pk %}" class="button">Apagar</a>
+      </div>
+    </article>
   {% endfor %}
-</body>
-
-</html>
+{% endblock content %}

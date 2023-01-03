@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'assets/css/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+  {% block css %}{% endblock css %}
+  <title>TODO
+    {% block title %}{% endblock title %}
+  </title>
+</head>
+
+<body>
+  <div class="fundo-escuro">
+    <header class="layout cabecalho">
+      <h1>
+        <a href="{% url 'todolist:home' %}">TODO</a>
+      </h1>
+      <div>
+        <p>{{ request.user.username }}</p>
+        <a class="" href="{% url 'todolist:create' %}">Criar TODO</a>
+      </div>
+    </header>
+  </div>
+
+  <div class="fundo-claro">
+    <main class="layout conteudo">
+      {% block content %}{% endblock content %}
+    </main>
+  </div>
+
+  <div class="fundo-escuro">
+    <footer class="layout rodape">
+      <p>
+        TODO List feita por
+        <a href="https://github.com/vitormcferreira" target="_blank">@Vitor Ferreira</a>
+        usando Django
+      </p>
+    </footer>
+  </div>
+</body>
+
+</html>

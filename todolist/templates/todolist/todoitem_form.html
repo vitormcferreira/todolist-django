@@ -1,0 +1,20 @@
+{% extends 'base_form.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}
+ - {% if request.resolver_match.url_name == 'create' %}Criar{% else %}Atualizar{% endif %}
+{% endblock title %}
+
+{% block content_title %}
+  {% if request.resolver_match.url_name == 'create' %}Criar{% else %}Atualizar{% endif %} TODO
+{% endblock content_title %}
+
+{% block fields %}
+  {% render_field form.title class='form-input' placeholder='*Título' %}
+  {{ form.title.errors }}
+  {% render_field form.text class='form-input' placeholder='Texto' %}
+  {{ form.text.errors }}
+{% endblock fields %}
+
+{% block button_text %}Salvar{% endblock button_text %}

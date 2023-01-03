@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base_form.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-</head>
+{% load widget_tweaks %}
 
-<body>
-  <form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">enviar</button>
-  </form>
-</body>
+{% block title %}
+ - Apagar TODO
+{% endblock title %}
 
-</html>
+{% block content_title %}Apagar TODO{% endblock content_title %}
+
+{% block fields %}
+  <p>Deseja realmente apagar "{{ object.title }}"?</p>
+{% endblock fields %}
+
+{% block button_text %}Sim{% endblock button_text %}

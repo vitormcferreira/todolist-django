@@ -1,0 +1,16 @@
+.todoitem-detail {
+  max-width: 900px;
+  margin: 0 auto;
+  height: fit-content;
+}
+
+.todoitem-detail section {
+  text-align: end;
+  margin: 20px;
+}
+
+.todoitem-detail main p {
+  border: 1px solid var(--dark-color);
+  border-radius: 4px;
+  padding: 20px;
+}

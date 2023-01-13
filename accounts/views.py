@@ -1,16 +1,16 @@
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.mixins import AccessMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 
-class IsNotAuthenticatedUser(AccessMixin):
+class IsNotAuthenticatedUser:
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return super().dispatch(request, *args, **kwargs)
-        return redirect('todolist:home')
+        if request.user.is_authenticated:
+            return redirect('todolist:home')
+
+        return super().dispatch(request, *args, **kwargs)
 
 
 class LoginView(IsNotAuthenticatedUser, auth_views.LoginView):

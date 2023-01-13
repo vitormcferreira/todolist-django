@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import QuerySet
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -11,12 +12,14 @@ class ToDoItemMixin(LoginRequiredMixin):
     success_url = reverse_lazy('todolist:home')
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        qs: QuerySet = super().get_queryset()
 
-        # somente os itens que o usuário criou
-        qs = qs.filter(user=self.request.user)
+        qs = self.__filter_user_items(qs)
 
         return qs
+
+    def __filter_user_items(self, qs: QuerySet):
+        return qs.filter(user=self.request.user)
 
     def get_success_url(self):
         next = self.request.GET.get('next')

@@ -22,7 +22,7 @@
         <a href="{% url 'todolist:home' %}">TODO</a>
       </h1>
       <div>
-        <p>{{ request.user.username }}</p>
+        <p>{{ request.user.username }} | <a class="" href="{% url 'accounts:logout' %}">Deslogar</a></p>
         <a class="" href="{% url 'todolist:create' %}">Criar TODO</a>
       </div>
     </header>
